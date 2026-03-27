@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs - Kaisiki African Initiative</title>
+    <style>
+        /* Copy all styles from homepage */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #e67e22; }
+        .logo span { color: #d35400; font-size: 0.9rem; display: block; }
+        .nav-links a { margin-left: 2rem; text-decoration: none; color: #333; transition: color 0.3s; font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: #e67e22; }
+        .page-header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1600x400?text=Our+Programs'); background-size: cover; background-position: center; padding: 5rem 0; text-align: center; color: white; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .section-title { text-align: center; font-size: 2.2rem; color: #e67e22; margin-bottom: 3rem; position: relative; }
+        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 10px auto 0; }
+        .programs-detailed { padding: 5rem 0; }
+        .program-detailed { display: flex; gap: 3rem; margin-bottom: 4rem; align-items: center; }
+        .program-detailed:nth-child(even) { flex-direction: row-reverse; }
+        .program-detailed img { width: 400px; height: 300px; object-fit: cover; border-radius: 12px; }
+        .program-info { flex: 1; }
+        .program-info h2 { color: #e67e22; margin-bottom: 1rem; font-size: 2rem; }
+        .program-info p { margin-bottom: 1rem; line-height: 1.8; }
+        .program-features { list-style: none; margin-top: 1rem; }
+        .program-features li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
+        .program-features li:before { content: '✓'; color: #e67e22; position: absolute; left: 0; font-weight: bold; }
+        footer { background: #2c3e50; color: white; padding: 3rem 0 1rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-col h4 { margin-bottom: 1rem; color: #e67e22; }
+        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 0.5rem; opacity: 0.8; }
+        .footer-col a:hover { opacity: 1; color: #e67e22; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        @media (max-width: 768px) { .program-detailed { flex-direction: column !important; } .program-detailed img { width: 100%; } .nav-links a { margin-left: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Kaisiki African Initiative
+                    <span>Empowering Communities, Transforming Lives</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="programs.html" class="active">Programs</a>
+                    <a href="impact.html">Impact</a>
+                    <a href="get-involved.html">Get Involved</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Programs</h1>
+            <p>Transforming lives through sustainable, community-driven initiatives</p>
+        </div>
+    </section>
+
+    <section class="programs-detailed">
+        <div class="container">
+            <div class="program-detailed">
+                <img src="https://via.placeholder.com/400x300?text=Education" alt="Education Program">
+                <div class="program-info">
+                    <h2>📚 Education Access Program</h2>
+                    <p>We believe education is the foundation for lasting change. Our Education Access Program removes barriers to quality education for children and youth across Africa.</p>
+                    <ul class="program-features">
+                        <li>Scholarships for underprivileged students</li>
+                        <li>School supplies and uniform distribution</li>
+                        <li>After-school tutoring and mentorship</li>
+                        <li>Infrastructure improvements for rural schools</li>
+                        <li>Digital literacy and technology access</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-detailed">
+                <img src="https://via.placeholder.com/400x300?text=Skills" alt="Skills Training">
+                <div class="program-info">
+                    <h2>💼 Skills & Entrepreneurship</h2>
+                    <p>Empowering individuals with marketable skills and entrepreneurial support to create sustainable livelihoods and economic independence.</p>
+                    <ul class="program-features">
+                        <li>Vocational training in high-demand trades</li>
+                        <li>Business development and financial literacy</li>
+                        <li>Seed funding and microloans for startups</li>
+                        <li>Mentorship and business incubation</li>
+                        <li>Market access and supply chain support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-detailed">
+                <img src="https://via.placeholder.com/400x300?text=Agriculture" alt="Agriculture">
+                <div class="program-info">
+                    <h2>🌾 Agricultural Development</h2>
+                    <p>Supporting smallholder farmers with modern techniques, resources, and market connections to increase food security and income.</p>
+                    <ul class="program-features">
+                        <li>Sustainable farming training and workshops</li>
+                        <li>Quality seeds, tools, and irrigation support</li>
+                        <li>Climate-smart agriculture practices</li>
+                        <li>Farmer cooperatives and collective marketing</li>
+                        <li>Value addition and processing training</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-detailed">
+                <img src="https://via.placeholder.com/400x300?text=Health" alt="Health">
+                <div class="program-info">
+                    <h2>👩‍⚕️ Health & Wellness</h2>
+                    <p>Improving community health outcomes through education, access to services, and preventive care initiatives.</p>
+                    <ul class="program-features">
+                        <li>Community health worker training</li>
+                        <li>Maternal and child health programs</li>
+                        <li>WASH (Water, Sanitation, Hygiene) initiatives</li>
+                        <li>Health education and disease prevention</li>
+                        <li>Mobile health clinics in remote areas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-detailed">
+                <img src="https://via.placeholder.com/400x300?text=Women" alt="Women Empowerment">
+                <div class="program-info">
+                    <h2>👭 Women & Girls Empowerment</h2>
+                    <p>Dedicated programs that address the unique challenges facing women and girls, promoting gender equity and leadership.</p>
+                    <ul class="program-features">
+                        <li>Girls' education and retention support</li>
+                        <li>Women's leadership and civic engagement</li>
+                        <li>Reproductive health education</li>
+                        <li>Economic empowerment groups</li>
+                        <li>Anti-FGM and child marriage advocacy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Kaisiki African Initiative</h4>
+                    <p>Empowering communities across Africa through sustainable development programs.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Our Programs</a>
+                    <a href="impact.html">Our Impact</a>
+                    <a href="get-involved.html">Get Involved</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support Our Work</h4>
+                    <a href="#">Donate</a>
+                    <a href="#">Volunteer</a>
+                    <a href="#">Partner With Us</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Kaisiki African Initiative &copy; 2026 - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

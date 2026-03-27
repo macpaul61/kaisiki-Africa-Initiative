@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kaisiki African Initiative</title>
+    <style>
+        /* Copy all styles from homepage */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #e67e22; }
+        .logo span { color: #d35400; font-size: 0.9rem; display: block; }
+        .nav-links a { margin-left: 2rem; text-decoration: none; color: #333; transition: color 0.3s; font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: #e67e22; }
+        .page-header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1600x400?text=Contact+Us'); background-size: cover; background-position: center; padding: 5rem 0; text-align: center; color: white; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .section-title { text-align: center; font-size: 2.2rem; color: #e67e22; margin-bottom: 3rem; position: relative; }
+        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 10px auto 0; }
+        .contact-page { padding: 5rem 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .contact-form button { background: #e67e22; color: white; border: none; padding: 12px 30px; cursor: pointer; border-radius: 50px; font-weight: 600; width: 100%; }
+        .office-card { background: #fef9f0; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; }
+        .office-card h3 { color: #e67e22; margin-bottom: 0.5rem; }
+        .map-section { margin-top: 3rem; background: #fef9f0; padding: 2rem; border-radius: 12px; text-align: center; }
+        footer { background: #2c3e50; color: white; padding: 3rem 0 1rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-col h4 { margin-bottom: 1rem; color: #e67e22; }
+        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 0.5rem; opacity: 0.8; }
+        .footer-col a:hover { opacity: 1; color: #e67e22; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } .nav-links a { margin-left: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Kaisiki African Initiative
+                    <span>Empowering Communities, Transforming Lives</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="impact.html">Impact</a>
+                    <a href="get-involved.html">Get Involved</a>
+                    <a href="contact.html" class="active">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Reach out with questions, partnership inquiries, or just to say hello.</p>
+        </div>
+    </section>
+
+    <section class="contact-page">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h2 class="section-title" style="margin-bottom: 1rem;">Send a Message</h2>
+                    <form id="mainContactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject">
+                        <select>
+                            <option>Inquiry Type</option>
+                            <option>General Inquiry</option>
+                            <option>Partnership Opportunities</option>
+                            <option>Donation Support</option>
+                            <option>Volunteer Application</option>
+                            <option>Media & Press</option>
+                        </select>
+                        <textarea rows="6" placeholder="Your message"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <p style="font-size: 0.8rem; margin-top: 1rem; text-align: center;">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+                </div>
+                <div>
+                    <h2 class="section-title" style="margin-bottom: 1rem;">Our Offices</h2>
+                    <div class="office-card">
+                        <h3>📍 Nairobi, Kenya (Headquarters)</h3>
+                        <p>Westlands Road, Eden Square<br>Nairobi, Kenya</p>
+                        <p><strong>📞</strong> +254 700 123 456<br><strong>✉️</strong> info@kaisikiafrica.org</p>
+                    </div>
+                    <div class="office-card">
+                        <h3>📍 Accra, Ghana</h3>
+                        <p>Airport City, 4th Floor<br>Accra, Ghana</p>
+                        <p><strong>📞</strong> +233 302 123 456<br><strong>✉️</strong> ghana@kaisikiafrica.org</p>
+                    </div>
+                    <div class="office-card">
+                        <h3>📍 Lagos, Nigeria</h3>
+                        <p>Victoria Island, Adeola Odeku Street<br>Lagos, Nigeria</p>
+                        <p><strong>📞</strong> +234 701 234 5678<br><strong>✉️</strong> nigeria@kaisikiafrica.org</p>
+                    </div>
+                    <div class="office-card">
+                        <h3>📍 Kampala, Uganda</h3>
+                        <p>Kampala Road, Jubilee Building<br>Kampala, Uganda</p>
+                        <p><strong>📞</strong> +256 414 123 456<br><strong>✉️</strong> uganda@kaisikiafrica.org</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <h3 style="color: #e67e22; margin-bottom: 1rem;">Get in Touch</h3>
+                <p>For general inquiries: <strong>info@kaisikiafrica.org</strong></p>
+                <p>For partnerships: <strong>partners@kaisikiafrica.org</strong></p>
+                <p>For media inquiries: <strong>media@kaisikiafrica.org</strong></p>
+                <p style="margin-top: 1rem;"><strong>Mailing Address:</strong> PO Box 12345-00100, Nairobi, Kenya</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Kaisiki African Initiative</h4>
+                    <p>Empowering communities across Africa through sustainable development programs.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Our Programs</a>
+                    <a href="impact.html">Our Impact</a>
+                    <a href="get-involved.html">Get Involved</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support Our Work</h4>
+                    <a href="#">Donate</a>
+                    <a href="#">Volunteer</a>
+                    <a href="#">Partner With Us</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Kaisiki African Initiative &copy; 2026 - All Rights Reserved</p>
+                <p style="margin-top: 0.5rem;">Registered NGO in Kenya: OP.218/051/2022-024/10529</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mainContactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out! Our team will respond within 2-3 business days.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

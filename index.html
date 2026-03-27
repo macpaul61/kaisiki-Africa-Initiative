@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaisiki African Initiative | Empowering Africa's Future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+           position:absolute;
+           top:0;
+           left:0;
+           width:100%;
+           z-index:1000;
+           background: rgba(0, 0, 0, 0.3);
+           backdrop-filter: blur(8px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e67e22;
+        }
+
+        .logo span {
+            color: #d35400;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #e67e22;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(kaisiki\ image4.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #d35400;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e67e22;
+            color: #e67e22;
+        }
+
+        .btn-outline:hover {
+            background: #e67e22;
+            color: white;
+        }
+
+        /* Mission/Vision Section */
+        .mission-vision {
+            padding: 5rem 0;
+            background: #ebe8c0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #e67e22;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e67e22;
+            margin: 10px auto 0;
+        }
+
+        .two-column {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            flex: 1;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #e67e22;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .program-card {
+            background: #fef9f0;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .program-card:hover {
+            background: #e67e22;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .program-card:hover h3 {
+            color: white;
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-card h3 {
+            color: #e67e22;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Impact Stats */
+        .impact-stats {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 0;
+            background: #ebd8b7;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .photo-card p {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: #fef9f0;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h3 {
+            color: #e67e22;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #ebd8b7;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .contact-info strong {
+            color: #e67e22;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            color: #e67e22;
+        }
+
+        .footer-col a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+            color: #e67e22;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            z-index: 1000;
+        }
+
+        .cookie-banner button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column, .contact-grid {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            .nav-links a {
+                margin-left: 1rem;
+                font-size: 0.9rem;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+     <header>
+        <div class="container">
+            <nav>
+                <div class="logo" style="color: rgb(138, 15, 15);">
+                    Kaisiki African Initiative
+                    <span style="color: rgba(255,255,255,0.8);">Empowering Communities, Transforming Lives</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" style="color: white;" class="active">Home</a>
+                    <a href="about.html" style="color: white;">About</a>
+                    <a href="programs.html" style="color: white;">Programs</a>
+                    <a href="impact.html" style="color: white;">Impact</a>
+                    <a href="get-involved.html" style="color: white;">Get Involved</a>
+                    <a href="contact.html" style="color: white;">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Kaisiki African Initiative</h1>
+            <div class="tagline">Uplift. Empower. Transform.</div>
+            <p>Building sustainable futures across Africa through education, economic empowerment, and community development.</p>
+            <a href="get-involved.html" class="btn">Join the Movement</a>
+            <a href="about.html" class="btn btn-outline" style="margin-left: 1rem;">Learn More</a>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="container">
+            <h2 class="section-title">Our Purpose</h2>
+            <div class="two-column">
+                <div class="card">
+                    <h2>Our Mission</h2>
+                    <p>To create lasting change in African communities by providing access to quality education, sustainable economic opportunities, and essential resources that empower individuals to break the cycle of poverty and build brighter futures.</p>
+                </div>
+                <div class="card">
+                    <h2>Our Vision</h2>
+                    <p>A thriving Africa where every individual has the opportunity to reach their full potential, contribute to their community, and live with dignity and purpose.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs">
+        <div class="container">
+            <h2 class="section-title">Our Core Programs</h2>
+            <div class="program-grid">
+                <div class="program-card">
+                    <div class="program-icon">📚</div>
+                    <h3>Education Access</h3>
+                    <p>Scholarships, school supplies, and learning resources for underprivileged children and youth.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">💼</div>
+                    <h3>Skills Training</h3>
+                    <p>Vocational training and entrepreneurship programs for sustainable livelihoods.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🌾</div>
+                    <h3>Agricultural Development</h3>
+                    <p>Modern farming techniques, resources, and market access for smallholder farmers.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">👩‍⚕️</div>
+                    <h3>Health & Wellness</h3>
+                    <p>Community health education, maternal care, and access to essential services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Impact So Far</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="stat-number">5,000+</span>
+                    <span class="stat-label">Students Supported</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2,300+</span>
+                    <span class="stat-label">Women Empowered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-label">Communities Reached</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">African Countries</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Hopeful Moments: Our Impact in Photos</h2>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <img src="kaisiki image2.jpg" alt="Education program">
+                    <p>Children receiving educational materials</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://via.placeholder.com/400x250?text=Skills+Training" alt="Skills training">
+                    <p>Vocational skills development workshop</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://via.placeholder.com/400x250?text=Community+Outreach" alt="Community outreach">
+                    <p>Community health and wellness outreach</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://via.placeholder.com/400x250?text=Agriculture" alt="Agriculture">
+                    <p>Sustainable farming initiatives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Leadership</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150?text=Director" alt="Executive Director">
+                    <h3>Dr. Amina Ochieng</h3>
+                    <p>Founder & Executive Director</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150?text=Programs" alt="Programs Director">
+                    <h3>James Mwangi</h3>
+                    <p>Director of Programs</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150?text=Community" alt="Community Director">
+                    <h3>Fatima Diallo</h3>
+                    <p>Community Engagement Lead</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150?text=Operations" alt="Operations">
+                    <h3>Kwame Asare</h3>
+                    <p>Operations Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Reach Out to Us</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea rows="5" placeholder="Your message"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <p style="font-size: 0.8rem; margin-top: 1rem; text-align: center;">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+                </div>
+                <div class="contact-info">
+                    <p><strong>📍 Dar es salaam, Tanzania (Headquarters)</strong>Westlands Road, Eden Square<br>Dar, Tanzania</p>
+                    <p><strong>📧 Email Us</strong>info@kaisikiafrica.org<br>partners@kaisikiafrica.org</p>
+                    <p><strong>📞 Call Us</strong>+254 700 123 456<br>+254 722 987 654</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Kaisiki African Initiative</h4>
+                    <p>Empowering communities across Africa through sustainable development programs.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Our Programs</a>
+                    <a href="impact.html">Our Impact</a>
+                    <a href="get-involved.html">Get Involved</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support Our Work</h4>
+                    <a href="#">Donate</a>
+                    <a href="#">Volunteer</a>
+                    <a href="#">Partner With Us</a>
+                    <a href="#">Sponsor a Child</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Kaisiki African Initiative &copy; 2026 - All Rights Reserved</p>
+                <p style="margin-top: 0.5rem;">Registered NGO in Kenya: OP.218/051/2022-024/10529</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cookie-banner" id="cookieBanner">
+        <span>We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.</span>
+        <button onclick="acceptCookies()">Accept</button>
+    </div>
+
+    <script>
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+
+        if (localStorage.getItem('cookiesAccepted') === 'true') {
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
