@@ -4,163 +4,929 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Involved - Kaisiki African Initiative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Copy all styles from homepage */
+        :root {
+            --orange:    #e67e22;
+            --orange-dk: #c0621a;
+            --dark:      #1a1a2e;
+            --cream:     #fdf6ec;
+            --warm:      #f5ead8;
+            --text:      #2d2d2d;
+            --muted:     #666;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text); line-height: 1.7; overflow-x: hidden;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── HEADER ─────────────────────────────────────────── */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: rgba(15,15,30,0.55); backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.4s;
+        }
+        header.scrolled { background: rgba(26,26,46,0.97); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #e67e22; }
-        .logo span { color: #d35400; font-size: 0.9rem; display: block; }
-        .nav-links a { margin-left: 2rem; text-decoration: none; color: #333; transition: color 0.3s; font-weight: 500; }
-        .nav-links a:hover, .nav-links a.active { color: #e67e22; }
-        .page-header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1600x400?text=Get+Involved'); background-size: cover; background-position: center; padding: 5rem 0; text-align: center; color: white; }
-        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .section-title { text-align: center; font-size: 2.2rem; color: #e67e22; margin-bottom: 3rem; position: relative; }
-        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 10px auto 0; }
-        .involvement-options { padding: 5rem 0; }
-        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .option-card { background: #fef9f0; padding: 2rem; border-radius: 12px; text-align: center; transition: transform 0.3s; }
-        .option-card:hover { transform: translateY(-5px); }
-        .option-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .option-card h3 { color: #e67e22; margin-bottom: 1rem; }
-        .donation-section { background: #fef9f0; padding: 5rem 0; }
-        .donation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .donation-amounts { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
-        .amount-btn { background: white; border: 2px solid #e67e22; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
-        .amount-btn:hover, .amount-btn.active { background: #e67e22; color: white; }
-        .donation-form input, .donation-form select { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; }
-        .volunteer-form { background: white; padding: 2rem; border-radius: 12px; }
-        .volunteer-form input, .volunteer-form select, .volunteer-form textarea { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; }
-        .btn { display: inline-block; background: #e67e22; color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; transition: background 0.3s; font-weight: 600; border: none; cursor: pointer; }
-        .btn:hover { background: #d35400; }
-        footer { background: #2c3e50; color: white; padding: 3rem 0 1rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .footer-col h4 { margin-bottom: 1rem; color: #e67e22; }
-        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 0.5rem; opacity: 0.8; }
-        .footer-col a:hover { opacity: 1; color: #e67e22; }
-        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
-        @media (max-width: 768px) { .donation-grid { grid-template-columns: 1fr; } .nav-links a { margin-left: 1rem; font-size: 0.9rem; } }
+
+        .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.35rem;
+            font-weight: 700; color: var(--orange); line-height: 1.25; text-decoration: none;
+        }
+        .logo span {
+            display: block; font-family: 'DM Sans', sans-serif;
+            font-size: 0.72rem; font-weight: 400;
+            color: rgba(255,255,255,0.65); letter-spacing: 0.04em;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 0.25rem; }
+        .nav-links a {
+            color: rgba(255,255,255,0.82); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            padding: 6px 14px; border-radius: 6px;
+            transition: color 0.25s, background 0.25s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(230,126,34,0.2); }
+
+        .dropdown { position: relative; }
+        .dropdown-btn {
+            background: transparent; border: none;
+            color: rgba(255,255,255,0.82); font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem; font-weight: 500;
+            padding: 6px 14px; border-radius: 6px; cursor: pointer;
+            display: flex; align-items: center; gap: 5px;
+            transition: color 0.25s, background 0.25s;
+        }
+        .dropdown-btn::after { content: "▾"; font-size: 11px; transition: transform 0.3s; }
+        .dropdown:hover .dropdown-btn, .dropdown-btn:focus { color: #fff; background: rgba(230,126,34,0.2); }
+        .dropdown:hover .dropdown-btn::after { transform: rotate(180deg); }
+
+        .dropdown-content {
+            display: none; position: absolute;
+            top: calc(100% + 2px); left: 0;
+            background: rgba(20,20,35,0.97);
+            border: 1px solid rgba(255,255,255,0.1);
+            min-width: 170px; border-radius: 10px; overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+            pointer-events: auto;
+        }
+        
+        .dropdown-content {
+            display: none;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            display: block; padding: 11px 18px;
+            color: rgba(255,255,255,0.82); font-size: 0.88rem;
+            text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: rgba(230,126,34,0.18); color: #fff; }
+
+        .menu-toggle {
+            display: none; background: none; border: none;
+            cursor: pointer; padding: 4px; flex-direction: column; gap: 5px;
+        }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── PAGE HERO ──────────────────────────────────────── */
+        .page-hero {
+            background: linear-gradient(155deg, rgba(0,0,0,0.75), rgba(0,0,0,0.5)),
+                        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 160px 0 90px; text-align: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(230,126,34,0.22) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .page-hero-badge {
+            display: inline-block; background: rgba(230,126,34,0.2);
+            border: 1px solid rgba(230,126,34,0.5); color: #f5a040;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; padding: 5px 16px; border-radius: 50px;
+            margin-bottom: 1.2rem; animation: fadeUp 0.7s ease both;
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 900; line-height: 1.15; margin-bottom: 1rem;
+            animation: fadeUp 0.8s 0.1s ease both;
+        }
+        .page-hero h1 em { font-style: normal; color: var(--orange); }
+        .page-hero p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.7);
+            max-width: 600px; margin: 0 auto;
+            animation: fadeUp 0.8s 0.2s ease both;
+        }
+        .breadcrumb {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem; margin-top: 1.5rem;
+            font-size: 0.85rem; color: rgba(255,255,255,0.45);
+            animation: fadeUp 0.8s 0.3s ease both;
+        }
+        .breadcrumb a { color: var(--orange); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { color: rgba(255,255,255,0.3); }
+
+        /* ── SHARED ─────────────────────────────────────────── */
+        section { padding: 90px 0; }
+        .section-title {
+            font-family: 'Playfair Display', serif; text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700;
+            color: var(--text); margin-bottom: 0.6rem;
+        }
+        .section-subtitle {
+            text-align: center; color: var(--muted);
+            font-size: 1.05rem; max-width: 640px; margin: 0 auto 3.5rem;
+        }
+        .accent-line { width: 52px; height: 4px; background: var(--orange); border-radius: 2px; margin: 10px auto 0; }
+
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── WAYS TO SUPPORT ────────────────────────────────── */
+        .ways { background: var(--cream); }
+        .ways-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+        }
+        .way-card {
+            background: #fff; border-radius: 18px; padding: 2.2rem 1.8rem;
+            text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            position: relative; overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer; text-decoration: none; display: block; color: inherit;
+        }
+        .way-card::after {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: var(--orange); transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .way-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+        .way-card:hover::after { transform: scaleX(1); }
+        .way-icon { font-size: 2.8rem; margin-bottom: 1rem; display: block; transition: transform 0.3s; }
+        .way-card:hover .way-icon { transform: scale(1.12); }
+        .way-card h3 { font-family: 'Playfair Display', serif; color: var(--text); margin-bottom: 0.6rem; font-size: 1.2rem; }
+        .way-card p { color: var(--muted); font-size: 0.93rem; }
+        .way-link {
+            display: inline-block; margin-top: 1.2rem;
+            color: var(--orange); font-weight: 600; font-size: 0.88rem;
+            border-bottom: 1px solid rgba(230,126,34,0.3);
+            padding-bottom: 2px; transition: border-color 0.2s;
+        }
+        .way-card:hover .way-link { border-color: var(--orange); }
+
+        /* ── DONATE SECTION ─────────────────────────────────── */
+        .donate-section { background: #fff; }
+
+        .donate-grid {
+            display: grid; grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem; align-items: start;
+        }
+
+        /* donation form box */
+        .donate-box {
+            background: var(--cream); border-radius: 22px;
+            padding: 2.5rem; box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+        }
+
+        .donate-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; margin-bottom: 0.4rem;
+        }
+
+        .donate-box .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; }
+
+        /* currency toggle */
+        .currency-toggle {
+            display: flex; gap: 0; margin-bottom: 1.5rem;
+            background: #fff; border-radius: 50px; padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: fit-content;
+        }
+        .currency-toggle button {
+            background: transparent; border: none;
+            padding: 7px 20px; border-radius: 50px; font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem; font-weight: 600; cursor: pointer;
+            color: var(--muted); transition: background 0.25s, color 0.25s;
+        }
+        .currency-toggle button.active {
+            background: var(--orange); color: #fff;
+        }
+
+        /* amount grid */
+        .amounts-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem; margin-bottom: 1rem;
+        }
+        .amt-btn {
+            background: #fff; border: 2px solid #e8e0d0;
+            border-radius: 12px; padding: 14px 8px; text-align: center;
+            cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+        }
+        .amt-btn .amt-val { display: block; font-size: 1.15rem; font-weight: 700; color: var(--text); }
+        .amt-btn .amt-impact { display: block; font-size: 0.7rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+        .amt-btn:hover, .amt-btn.active {
+            border-color: var(--orange); background: rgba(230,126,34,0.06);
+        }
+        .amt-btn.active .amt-val { color: var(--orange); }
+
+        .custom-input-wrap { position: relative; margin-bottom: 1.5rem; }
+        .custom-input-wrap .currency-symbol {
+            position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+            color: var(--muted); font-weight: 600; font-size: 0.95rem;
+        }
+        .custom-input-wrap input {
+            width: 100%; padding: 12px 14px 12px 36px;
+            border: 1.5px solid #e8e0d0; border-radius: 10px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+            color: var(--text); background: #fff; outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+        .custom-input-wrap input:focus {
+            border-color: var(--orange); box-shadow: 0 0 0 3px rgba(230,126,34,0.1);
+        }
+
+        /* form fields */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
+        .form-group { margin-bottom: 0.9rem; }
+        .form-group label {
+            display: block; font-size: 0.78rem; font-weight: 600;
+            color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px solid #e8e0d0; border-radius: 10px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+            color: var(--text); background: #fff; outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--orange); box-shadow: 0 0 0 3px rgba(230,126,34,0.1);
+        }
+
+        /* freq pills */
+        .freq-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .freq-pill {
+            background: #fff; border: 2px solid #e8e0d0;
+            padding: 7px 18px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+            color: var(--muted);
+        }
+        .freq-pill:hover, .freq-pill.active {
+            border-color: var(--orange); color: var(--orange);
+            background: rgba(230,126,34,0.06);
+        }
+
+        .donate-btn {
+            width: 100%; background: var(--orange); color: #fff;
+            border: none; padding: 15px; border-radius: 50px;
+            font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: background 0.25s, transform 0.2s;
+            letter-spacing: 0.02em; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .donate-btn:hover { background: var(--orange-dk); transform: translateY(-2px); }
+
+        .secure-note {
+            text-align: center; font-size: 0.78rem; color: #aaa; margin-top: 0.9rem;
+        }
+
+        /* what your money does */
+        .impact-sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
+
+        .impact-sidebar h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .impact-sidebar > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+        .impact-item {
+            background: var(--cream); border-radius: 14px; padding: 1.3rem 1.5rem;
+            display: flex; gap: 1.1rem; align-items: flex-start;
+            border-left: 4px solid var(--orange);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .impact-item:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+
+        .impact-item .ii-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .impact-item .ii-body strong { display: block; color: var(--text); font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+        .impact-item .ii-body span { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+        .transfer-info {
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            border-radius: 14px; padding: 1.5rem;
+            color: #fff; margin-top: 0.5rem;
+        }
+        .transfer-info h4 { font-family: 'Playfair Display', serif; margin-bottom: 0.8rem; color: #f5a040; font-size: 1.05rem; }
+        .transfer-info p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+        .transfer-info .trow { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.85rem; }
+        .transfer-info .trow:last-child { border-bottom: none; }
+        .transfer-info .trow span:first-child { color: rgba(255,255,255,0.55); }
+        .transfer-info .trow span:last-child { color: #fff; font-weight: 600; }
+
+        /* ── VOLUNTEER SECTION ──────────────────────────────── */
+        .volunteer-section { background: var(--warm); }
+
+        .volunteer-grid {
+            display: grid; grid-template-columns: 0.9fr 1.1fr;
+            gap: 3.5rem; align-items: start;
+        }
+
+        .volunteer-intro h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
+        }
+        .volunteer-intro h3 em { font-style: normal; color: var(--orange); }
+        .volunteer-intro p { color: var(--muted); font-size: 0.98rem; line-height: 1.8; margin-bottom: 1.4rem; }
+
+        .vol-roles { display: flex; flex-direction: column; gap: 0.8rem; }
+        .vol-role {
+            background: #fff; border-radius: 12px; padding: 1rem 1.3rem;
+            display: flex; gap: 0.9rem; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            transition: transform 0.25s;
+        }
+        .vol-role:hover { transform: translateX(5px); }
+        .vol-role .vr-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .vol-role .vr-title { font-weight: 600; font-size: 0.93rem; color: var(--text); }
+        .vol-role .vr-desc { font-size: 0.82rem; color: var(--muted); }
+
+        /* volunteer form */
+        .volunteer-form-box {
+            background: #fff; border-radius: 22px;
+            padding: 2.5rem; box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+        }
+        .volunteer-form-box h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+        .volunteer-form-box .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; }
+
+        .vol-submit {
+            width: 100%; background: var(--orange); color: #fff;
+            border: none; padding: 14px; border-radius: 50px;
+            font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; margin-top: 0.5rem;
+            transition: background 0.25s, transform 0.2s;
+        }
+        .vol-submit:hover { background: var(--orange-dk); transform: translateY(-2px); }
+
+        /* ── PARTNER SECTION ─────────────────────────────────── */
+        .partner-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff; position: relative; overflow: hidden;
+        }
+        .partner-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(230,126,34,0.18) 0%, transparent 60%);
+        }
+        .partner-inner { position: relative; }
+        .partner-inner .section-title { color: #fff; }
+        .partner-inner .section-subtitle { color: rgba(255,255,255,0.6); }
+
+        .partner-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem; margin-bottom: 2.5rem;
+        }
+        .partner-card {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 2rem 1.5rem; text-align: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .partner-card:hover { background: rgba(230,126,34,0.14); transform: translateY(-5px); }
+        .partner-card .pc-icon { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+        .partner-card h4 { font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 0.5rem; }
+        .partner-card p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
+
+        .partner-cta { text-align: center; }
+        .partner-cta p { color: rgba(255,255,255,0.7); max-width: 540px; margin: 0 auto 2rem; font-size: 1rem; }
+
+        /* ── SOCIAL FOLLOW ──────────────────────────────────── */
+        .social-section { background: var(--cream); padding: 70px 0; }
+        .social-inner { text-align: center; max-width: 680px; margin: 0 auto; }
+        .social-inner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.6rem; }
+        .social-inner h2 em { font-style: normal; color: var(--orange); }
+        .social-inner p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+        .social-cards { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .social-card {
+            display: flex; align-items: center; gap: 0.8rem;
+            background: #fff; padding: 13px 22px; border-radius: 50px;
+            text-decoration: none; color: var(--text);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+            font-weight: 600; font-size: 0.92rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .social-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
+        .social-card span { font-size: 1.3rem; }
+
+        /* ── TOAST ───────────────────────────────────────────── */
+        .toast {
+            position: fixed; bottom: 32px; right: 32px;
+            background: #2ecc71; color: #fff;
+            padding: 14px 22px; border-radius: 12px;
+            font-weight: 600; font-size: 0.95rem;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+            transform: translateY(100px); opacity: 0;
+            transition: transform 0.4s, opacity 0.4s; z-index: 9999;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
+        footer { background: var(--dark); color: rgba(255,255,255,0.75); padding: 60px 0 24px; }
+        .footer-grid {
+            display: grid; grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 2.5rem; margin-bottom: 3rem; padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-col h4 { font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 1rem; font-size: 1.05rem; }
+        .footer-col p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--orange); }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--orange); margin-bottom: 0.6rem; }
+        .social-links { display: flex; gap: 0.6rem; margin-top: 1rem; }
+        .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,0.07); border-radius: 8px; font-size: 1rem; text-decoration: none; transition: background 0.2s; margin-bottom: 0; }
+        .social-links a:hover { background: var(--orange); }
+        .copyright { text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+
+        /* ── BACK TO TOP ─────────────────────────────────────── */
+        #backToTop {
+            position: fixed; bottom: 32px; right: 32px;
+            width: 46px; height: 46px; background: var(--orange);
+            color: #fff; border: none; border-radius: 12px; font-size: 1.2rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(230,126,34,0.45);
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s, background 0.2s; z-index: 900;
+        }
+        #backToTop.visible { opacity: 1; transform: translateY(0); }
+        #backToTop:hover { background: var(--orange-dk); }
+
+        .btn {
+            display: inline-block; background: var(--orange); color: #fff;
+            padding: 13px 32px; text-decoration: none; border-radius: 50px;
+            font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(230,126,34,0.4);
+        }
+        .btn:hover { background: var(--orange-dk); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.6); color: #fff; box-shadow: none; }
+        .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+        /* ── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 960px) {
+            .donate-grid, .volunteer-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            section { padding: 70px 0; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                display: none; position: fixed; top: 0; right: 0;
+                width: min(300px, 85vw); height: 100vh;
+                background: rgba(15,15,30,0.98); backdrop-filter: blur(20px);
+                flex-direction: column; align-items: flex-start;
+                padding: 90px 28px 40px; gap: 0.25rem;
+                box-shadow: -6px 0 40px rgba(0,0,0,0.4);
+                transform: translateX(100%); transition: transform 0.35s ease; z-index: 999;
+            }
+            .nav-links.active { display: flex; transform: translateX(0); }
+            .nav-links a { width: 100%; padding: 10px 14px; font-size: 1rem; }
+            .dropdown { width: 100%; }
+            .dropdown-btn { width: 100%; justify-content: space-between; padding: 10px 14px; font-size: 1rem; }
+            .dropdown-content { display: none; position: static; background: rgba(255,255,255,0.04); border-radius: 8px; box-shadow: none; border: none; margin-top: 4px; }
+            .dropdown-content.show { display: block; }
+            .amounts-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .amounts-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
-    <header>
+
+    <!-- HEADER -->
+    <header id="siteHeader">
         <div class="container">
             <nav>
-                <div class="logo">
+                <a href="index.html" class="logo">
                     Kaisiki African Initiative
                     <span>Empowering Communities, Transforming Lives</span>
-                </div>
-                <div class="nav-links">
+                </a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="nav-links" id="navLinks">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
                     <a href="programs.html">Programs</a>
-                    <a href="impact.html">Impact</a>
-                    <a href="get-involved.html" class="active">Get Involved</a>
-                    <a href="contact.html">Contact</a>
+                    <div class="dropdown">
+                        <button class="dropdown-btn" id="dropdownBtn" aria-haspopup="true" aria-expanded="false">More</button>
+                        <div class="dropdown-content" id="dropdownMenu">
+                            <a href="impact.html">Impact</a>
+                            <a href="get-involved.html" class="active">Get Involved</a>
+                            <a href="contact.html">Contact</a>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section class="page-header">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
         <div class="container">
-            <h1>Get Involved</h1>
-            <p>Join us in building a brighter future for Africa</p>
+            <div class="page-hero-badge">💛 Take Action Today</div>
+            <h1>Get <em>Involved</em></h1>
+            <p>Whether you give, volunteer, advocate, or partner — every form of support puts a Tanzanian girl one step closer to her future.</p>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span style="color:rgba(255,255,255,0.65)">Get Involved</span>
+            </nav>
         </div>
     </section>
 
-    <section class="involvement-options">
+    <!-- WAYS TO SUPPORT -->
+    <section class="ways">
         <div class="container">
-            <h2 class="section-title">Ways to Support</h2>
-            <div class="options-grid">
-                <div class="option-card">
-                    <div class="option-icon">❤️</div>
+            <h2 class="section-title reveal">Four Ways to Support</h2>
+            <div class="accent-line reveal"></div>
+            <p class="section-subtitle reveal">Every action — big or small — creates ripples that reach far beyond what you might imagine.</p>
+            <div class="ways-grid">
+                <a href="#donate" class="way-card reveal">
+                    <span class="way-icon">❤️</span>
                     <h3>Donate</h3>
-                    <p>Your contribution directly supports education, skills training, and community development programs across Africa.</p>
-                </div>
-                <div class="option-card">
-                    <div class="option-icon">🤝</div>
+                    <p>Directly fund a girl's school fees, supplies, or mentorship. 100% of donations go to program delivery on the ground in Tanzania.</p>
+                    <span class="way-link">Give now →</span>
+                </a>
+                <a href="#volunteer" class="way-card reveal">
+                    <span class="way-icon">🤝</span>
                     <h3>Volunteer</h3>
-                    <p>Share your skills and time with our programs. Opportunities available locally and internationally.</p>
-                </div>
-                <div class="option-card">
-                    <div class="option-icon">🏢</div>
+                    <p>Contribute your skills — teaching, mentoring, digital training, community outreach. Remote and in-person opportunities available.</p>
+                    <span class="way-link">Apply →</span>
+                </a>
+                <a href="#partner" class="way-card reveal">
+                    <span class="way-icon">🏢</span>
                     <h3>Partner With Us</h3>
-                    <p>Corporate partnerships, foundations, and organizations can amplify our impact together.</p>
-                </div>
-                <div class="option-card">
-                    <div class="option-icon">📢</div>
-                    <h3>Become an Advocate</h3>
-                    <p>Help raise awareness about our mission and the communities we serve.</p>
-                </div>
+                    <p>Organisations and foundations can co-fund programs, provide in-kind support, or build long-term development partnerships.</p>
+                    <span class="way-link">Let's talk →</span>
+                </a>
+                <a href="#follow" class="way-card reveal">
+                    <span class="way-icon">📢</span>
+                    <h3>Spread the Word</h3>
+                    <p>Follow us on social media, share our stories, and help us reach more supporters. Awareness is the first step toward change.</p>
+                    <span class="way-link">Follow us →</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="donation-section">
+    <!-- DONATE SECTION -->
+    <section class="donate-section" id="donate">
         <div class="container">
-            <h2 class="section-title">Make a Donation</h2>
-            <div class="donation-grid">
-                <div class="donation-form">
-                    <h3 style="color: #e67e22; margin-bottom: 1rem;">Select Amount</h3>
-                    <div class="donation-amounts">
-                        <button class="amount-btn" onclick="setAmount(25)">$25</button>
-                        <button class="amount-btn" onclick="setAmount(50)">$50</button>
-                        <button class="amount-btn" onclick="setAmount(100)">$100</button>
-                        <button class="amount-btn" onclick="setAmount(250)">$250</button>
-                        <button class="amount-btn" onclick="setAmount(500)">$500</button>
+            <h2 class="section-title reveal">Make a Donation</h2>
+            <div class="accent-line reveal"></div>
+            <p class="section-subtitle reveal">Every contribution goes directly to supporting girls' education and community programs in Tanzania. No hidden fees.</p>
+
+            <div class="donate-grid">
+                <!-- LEFT: Donation form -->
+                <div class="donate-box reveal">
+                    <h3>Choose Your Impact</h3>
+                    <p class="sub">Select an amount — or enter your own. Your donation makes a real difference.</p>
+
+                    <div class="currency-toggle" id="currencyToggle">
+                        <button class="active" data-currency="USD" onclick="setCurrency('USD', this)">USD $</button>
+                        <button data-currency="TZS" onclick="setCurrency('TZS', this)">TZS Tsh</button>
                     </div>
-                    <input type="number" id="customAmount" placeholder="Other amount" style="width: 100%; padding: 12px; margin-bottom: 1rem;">
-                    <h3 style="color: #e67e22; margin: 1rem 0;">Personal Information</h3>
-                    <input type="text" placeholder="Full Name">
-                    <input type="email" placeholder="Email Address">
-                    <select>
-                        <option>Select donation frequency</option>
-                        <option>One-time</option>
-                        <option>Monthly</option>
-                        <option>Quarterly</option>
-                        <option>Annually</option>
-                    </select>
-                    <button class="btn" style="width: 100%;" onclick="alert('Thank you for your generosity! This would redirect to a secure payment gateway.')">Donate Now</button>
-                    <p style="font-size: 0.8rem; margin-top: 1rem; text-align: center;">Secure payment processing. 100% of donations go to programs.</p>
+
+                    <div class="amounts-grid" id="amountsGrid">
+                        <!-- filled by JS -->
+                    </div>
+
+                    <div class="custom-input-wrap">
+                        <span class="currency-symbol" id="currSymbol">$</span>
+                        <input type="number" id="customAmount" placeholder="Enter custom amount" min="1">
+                    </div>
+
+                    <p style="font-size:0.8rem; color: var(--muted); margin-bottom: 1.4rem;">💡 <strong>What does it cover?</strong> See the impact guide on the right →</p>
+
+                    <p style="font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:0.7rem;">Frequency</p>
+                    <div class="freq-pills" id="freqPills">
+                        <button class="freq-pill active" onclick="setFreq(this)">One-time</button>
+                        <button class="freq-pill" onclick="setFreq(this)">Monthly</button>
+                        <button class="freq-pill" onclick="setFreq(this)">Quarterly</button>
+                        <button class="freq-pill" onclick="setFreq(this)">Annually</button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="donorFirst" placeholder="Amina">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="donorLast" placeholder="Hassan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="donorEmail" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Dedicate this gift (optional)</label>
+                        <input type="text" id="donorDedication" placeholder="In honour of / In memory of…">
+                    </div>
+
+                    <button class="donate-btn" onclick="handleDonate()">
+                        ❤️ Donate Now — Secure Payment
+                    </button>
+                    <p class="secure-note">🔒 Payments are processed securely. Kaisiki does not store your card details.</p>
                 </div>
-                <div class="volunteer-form">
-                    <h3 style="color: #e67e22; margin-bottom: 1rem;">Volunteer With Us</h3>
-                    <input type="text" placeholder="Full Name">
-                    <input type="email" placeholder="Email Address">
-                    <input type="tel" placeholder="Phone Number">
-                    <select>
-                        <option>Select your country</option>
-                        <option>Kenya</option>
-                        <option>Ghana</option>
-                        <option>Nigeria</option>
-                        <option>Uganda</option>
-                        <option>Other</option>
-                    </select>
-                    <select>
-                        <option>Area of interest</option>
-                        <option>Education Programs</option>
-                        <option>Skills Training</option>
-                        <option>Agriculture</option>
-                        <option>Health Initiatives</option>
-                        <option>Fundraising & Events</option>
-                        <option>Communications & Marketing</option>
-                    </select>
-                    <textarea rows="3" placeholder="Tell us about your skills and how you'd like to help"></textarea>
-                    <button class="btn" style="width: 100%;" onclick="alert('Thank you for volunteering! Our team will contact you soon.')">Submit Application</button>
+
+                <!-- RIGHT: Impact guide + bank transfer -->
+                <div class="impact-sidebar reveal">
+                    <h3>Your Money at Work</h3>
+                    <p>Here's exactly what different amounts achieve for a girl in Tanzania:</p>
+
+                    <div class="impact-item">
+                        <span class="ii-icon">📓</span>
+                        <div class="ii-body">
+                            <strong>$10 / Tsh 26,000</strong>
+                            <span>Covers one month of exercise books, pens, and basic stationery for a student.</span>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="ii-icon">👗</span>
+                        <div class="ii-body">
+                            <strong>$25 / Tsh 65,000</strong>
+                            <span>Provides a full school uniform so a girl can attend class without fear of being sent home.</span>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="ii-icon">📚</span>
+                        <div class="ii-body">
+                            <strong>$50 / Tsh 130,000</strong>
+                            <span>Funds one term's worth of textbooks across all core subjects for a secondary student.</span>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="ii-icon">🏫</span>
+                        <div class="ii-body">
+                            <strong>$150 / Tsh 390,000</strong>
+                            <span>Covers one full term of school fees — the single biggest barrier to education for most families.</span>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <span class="ii-icon">🎓</span>
+                        <div class="ii-body">
+                            <strong>$500 / Tsh 1,300,000</strong>
+                            <span>Sponsors a girl's entire school year — fees, books, uniform, and mentorship sessions.</span>
+                        </div>
+                    </div>
+
+                    <!-- Bank transfer info -->
+                    <div class="transfer-info">
+                        <h4>🏦 Bank Transfer / M-Pesa</h4>
+                        <p style="margin-bottom:0.9rem;">Prefer to give directly? Use the details below:</p>
+                        <div class="trow"><span>Account Name</span><span>Kaisiki African Initiative</span></div>
+                        <div class="trow"><span>Bank</span><span>CRDB Bank Tanzania</span></div>
+                        <div class="trow"><span>Account No.</span><span>Contact us for details</span></div>
+                        <div class="trow"><span>M-Pesa / Tigo Pesa</span><span>Contact us for number</span></div>
+                        <p style="margin-top:0.8rem; font-size:0.8rem;">Please email <span style="color:#f5a040;">info@kaisikiafrica.org</span> after transferring so we can acknowledge your gift.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- VOLUNTEER SECTION -->
+    <section class="volunteer-section" id="volunteer">
+        <div class="container">
+            <div class="volunteer-grid">
+
+                <!-- LEFT: intro + roles -->
+                <div class="volunteer-intro reveal">
+                    <h3>Give Your <em>Time</em> & Skills</h3>
+                    <p>We are a small, passionate team — and we genuinely need skilled people to help us grow. Whether you're based in Tanzania or abroad, there's a meaningful role for you.</p>
+                    <p>We don't need you to be an expert in development work. We need teachers, designers, marketers, accountants, counsellors, photographers, and people who care.</p>
+
+                    <div class="vol-roles">
+                        <div class="vol-role">
+                            <span class="vr-icon">📖</span>
+                            <div>
+                                <div class="vr-title">Tutoring & Mentorship</div>
+                                <div class="vr-desc">Support girls after school in core subjects or life skills sessions.</div>
+                            </div>
+                        </div>
+                        <div class="vol-role">
+                            <span class="vr-icon">💻</span>
+                            <div>
+                                <div class="vr-title">Digital & Tech Training</div>
+                                <div class="vr-desc">Help deliver basic computer literacy workshops in our partner schools.</div>
+                            </div>
+                        </div>
+                        <div class="vol-role">
+                            <span class="vr-icon">📸</span>
+                            <div>
+                                <div class="vr-title">Photography & Storytelling</div>
+                                <div class="vr-desc">Document program activities and help us share impact with the world.</div>
+                            </div>
+                        </div>
+                        <div class="vol-role">
+                            <span class="vr-icon">📊</span>
+                            <div>
+                                <div class="vr-title">Admin & Communications</div>
+                                <div class="vr-desc">Help with social media, report writing, donor communications, or data tracking.</div>
+                            </div>
+                        </div>
+                        <div class="vol-role">
+                            <span class="vr-icon">🌍</span>
+                            <div>
+                                <div class="vr-title">Remote Support (Anywhere)</div>
+                                <div class="vr-desc">Grant writing, website support, fundraising, translation — all doable remotely.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: volunteer form -->
+                <div class="volunteer-form-box reveal">
+                    <h3>Apply to Volunteer</h3>
+                    <p class="sub">Fill in the form below and our team will get back to you within 5 business days.</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="volFirst" placeholder="Your first name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="volLast" placeholder="Your last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="volEmail" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone / WhatsApp</label>
+                        <input type="tel" id="volPhone" placeholder="+255 7XX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <select id="volLocation">
+                            <option value="">Where are you based?</option>
+                            <option>Dar es Salaam, Tanzania</option>
+                            <option>Dodoma, Tanzania</option>
+                            <option>Mwanza, Tanzania</option>
+                            <option>Arusha, Tanzania</option>
+                            <option>Morogoro, Tanzania</option>
+                            <option>Other city in Tanzania</option>
+                            <option>Outside Tanzania (Remote)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Area of Interest</label>
+                        <select id="volArea">
+                            <option value="">Select your area</option>
+                            <option>Tutoring & Mentorship</option>
+                            <option>Digital & Tech Training</option>
+                            <option>Photography & Storytelling</option>
+                            <option>Admin & Communications</option>
+                            <option>Social Media & Marketing</option>
+                            <option>Grant Writing & Fundraising</option>
+                            <option>Health Education Outreach</option>
+                            <option>Event Coordination</option>
+                            <option>General Support</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tell us about yourself</label>
+                        <textarea id="volBio" rows="4" style="width:100%; padding:11px 14px; border:1.5px solid #e8e0d0; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--text); outline:none; resize:vertical; transition:border-color 0.25s, box-shadow 0.25s;" placeholder="Your background, skills, and how you'd like to contribute…" onfocus="this.style.borderColor='var(--orange)'; this.style.boxShadow='0 0 0 3px rgba(230,126,34,0.1)'" onblur="this.style.borderColor='#e8e0d0'; this.style.boxShadow='none'"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Availability</label>
+                        <select id="volAvail">
+                            <option value="">How much time can you offer?</option>
+                            <option>A few hours per week (Remote)</option>
+                            <option>1 day per week (In-person)</option>
+                            <option>Weekends only</option>
+                            <option>School holiday periods</option>
+                            <option>Full-time for 1–3 months</option>
+                            <option>Flexible — discuss with team</option>
+                        </select>
+                    </div>
+
+                    <button class="vol-submit" onclick="handleVolunteer()">Submit Application →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNER SECTION -->
+    <section class="partner-section" id="partner">
+        <div class="container">
+            <div class="partner-inner">
+                <h2 class="section-title reveal">Partner With Us</h2>
+                <div class="accent-line reveal" style="background:#fff;"></div>
+                <p class="section-subtitle reveal">We welcome partnerships with organisations, foundations, schools, and businesses that share our belief in girls' education and community development.</p>
+
+                <div class="partner-grid">
+                    <div class="partner-card reveal">
+                        <span class="pc-icon">🏫</span>
+                        <h4>School & Education Partners</h4>
+                        <p>Partner schools receive support, resources, and a direct link to our scholarship and mentorship programs for their students.</p>
+                    </div>
+                    <div class="partner-card reveal">
+                        <span class="pc-icon">🏢</span>
+                        <h4>Corporate CSR Partners</h4>
+                        <p>Tanzanian and international companies can align their CSR work with our programs — sponsoring a school term, providing equipment, or funding specific initiatives.</p>
+                    </div>
+                    <div class="partner-card reveal">
+                        <span class="pc-icon">🌍</span>
+                        <h4>International Foundations</h4>
+                        <p>We are open to co-funding arrangements with foundations and NGOs working in East Africa's education and gender equity space.</p>
+                    </div>
+                    <div class="partner-card reveal">
+                        <span class="pc-icon">🎓</span>
+                        <h4>Universities & Research</h4>
+                        <p>Academic institutions can partner with us for research, student placements, or curriculum support that benefits our program participants.</p>
+                    </div>
+                </div>
+
+                <div class="partner-cta reveal">
+                    <p>Interested in discussing a partnership? Our team is happy to explore what collaboration could look like for your organisation.</p>
+                    <a href="contact.html" class="btn">Contact Our Team →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL FOLLOW -->
+    <section class="social-section" id="follow">
+        <div class="container">
+            <div class="social-inner reveal">
+                <h2>Follow Our <em>Journey</em></h2>
+                <p>Stay connected with stories from the ground, program updates, and ways to help — right in your feed. Every share introduces Kaisiki to someone new.</p>
+                <div class="social-cards">
+                    <a href="https://www.instagram.com/kaisiki_africa_initiative?igsh=amp0NWhybDVzbnI1" target="_blank" class="social-card">
+                        <span>📷</span> Instagram
+                    </a>
+                    <a href="#" class="social-card">
+                        <span>📘</span> Facebook
+                    </a>
+                    <a href="#" class="social-card">
+                        <span>🐦</span> Twitter / X
+                    </a>
+                    <a href="#" class="social-card">
+                        <span>💼</span> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Kaisiki African Initiative</h4>
-                    <p>Empowering communities across Africa through sustainable development programs.</p>
+                    <div class="footer-logo">Kaisiki African Initiative</div>
+                    <p>Empowering young female students in Tanzania, with a vision to grow across Africa.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/kaisiki_africa_initiative?igsh=amp0NWhybDVzbnI1" target="_blank" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
@@ -172,31 +938,170 @@
                 </div>
                 <div class="footer-col">
                     <h4>Support Our Work</h4>
-                    <a href="#">Donate</a>
-                    <a href="#">Volunteer</a>
-                    <a href="#">Partner With Us</a>
+                    <a href="#donate">Donate</a>
+                    <a href="#volunteer">Volunteer</a>
+                    <a href="#partner">Partner With Us</a>
+                    <a href="#donate">Sponsor a Girl</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Annual Report</a>
                 </div>
             </div>
             <div class="copyright">
-                <p>Kaisiki African Initiative &copy; 2026 - All Rights Reserved</p>
+                <p>© 2026 Kaisiki African Initiative. All Rights Reserved. &nbsp;|&nbsp; Based in Dar es Salaam, Tanzania &nbsp;|&nbsp; Built with ❤️ for Africa</p>
             </div>
         </div>
     </footer>
 
+    <button id="backToTop" aria-label="Back to top">↑</button>
+    <div class="toast" id="toast"></div>
+
     <script>
-        function setAmount(amount) {
-            document.getElementById('customAmount').value = amount;
-            const btns = document.querySelectorAll('.amount-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+    // ── Header scroll
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60));
+
+    // ── Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks   = document.getElementById('navLinks');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        menuToggle.classList.toggle('open', menuOpen);
+        navLinks.classList.toggle('active', menuOpen);
+        menuToggle.setAttribute('aria-expanded', menuOpen);
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+    document.addEventListener('click', (e) => {
+        if (menuOpen && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuOpen = false;
+            menuToggle.classList.remove('open');
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         }
+    });
+    document.getElementById('dropdownBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = document.getElementById('dropdownMenu').classList.toggle('show');
+        document.getElementById('dropdownBtn').setAttribute('aria-expanded', open);
+    });
+
+    // ── Reveal
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+                const delay = siblings.indexOf(entry.target) * 80;
+                setTimeout(() => entry.target.classList.add('visible'), delay);
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── Donation amounts per currency
+    const amountData = {
+        USD: [
+            { val: '$10',  impact: 'Books & stationery' },
+            { val: '$25',  impact: 'Full school uniform' },
+            { val: '$50',  impact: 'One term textbooks' },
+            { val: '$150', impact: 'One term school fees' },
+            { val: '$300', impact: 'Two terms of support' },
+            { val: '$500', impact: 'Full year sponsorship' },
+        ],
+        TZS: [
+            { val: 'Tsh 26,000',    impact: 'Books & stationery' },
+            { val: 'Tsh 65,000',    impact: 'Full school uniform' },
+            { val: 'Tsh 130,000',   impact: 'One term textbooks' },
+            { val: 'Tsh 390,000',   impact: 'One term school fees' },
+            { val: 'Tsh 800,000',   impact: 'Two terms of support' },
+            { val: 'Tsh 1,300,000', impact: 'Full year sponsorship' },
+        ]
+    };
+
+    let currentCurrency = 'USD';
+    let selectedAmt = null;
+
+    function renderAmounts(currency) {
+        const grid = document.getElementById('amountsGrid');
+        grid.innerHTML = '';
+        amountData[currency].forEach((item, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'amt-btn';
+            btn.innerHTML = `<span class="amt-val">${item.val}</span><span class="amt-impact">${item.impact}</span>`;
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedAmt = item.val;
+                document.getElementById('customAmount').value = '';
+            });
+            grid.appendChild(btn);
+        });
+    }
+
+    function setCurrency(currency, btn) {
+        currentCurrency = currency;
+        document.querySelectorAll('#currencyToggle button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('currSymbol').textContent = currency === 'USD' ? '$' : 'Tsh';
+        selectedAmt = null;
+        document.getElementById('customAmount').value = '';
+        renderAmounts(currency);
+    }
+
+    function setFreq(btn) {
+        document.querySelectorAll('.freq-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    renderAmounts('USD');
+
+    // ── Toast helper
+    function showToast(msg, color = '#2ecc71') {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.style.background = color;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 4500);
+    }
+
+    // ── Donate handler
+    function handleDonate() {
+        const amt = selectedAmt || document.getElementById('customAmount').value;
+        const first = document.getElementById('donorFirst').value.trim();
+        const email = document.getElementById('donorEmail').value.trim();
+        if (!amt) { showToast('⚠️ Please select or enter a donation amount.', '#e74c3c'); return; }
+        if (!first) { showToast('⚠️ Please enter your first name.', '#e74c3c'); return; }
+        if (!email || !email.includes('@')) { showToast('⚠️ Please enter a valid email address.', '#e74c3c'); return; }
+        // In production this would redirect to a payment gateway (e.g. Stripe, Flutterwave, DPO Pay)
+        showToast(`✅ Thank you, ${first}! Redirecting to secure payment…`);
+    }
+
+    // ── Volunteer handler
+    function handleVolunteer() {
+        const first  = document.getElementById('volFirst').value.trim();
+        const email  = document.getElementById('volEmail').value.trim();
+        const area   = document.getElementById('volArea').value;
+        if (!first) { showToast('⚠️ Please enter your first name.', '#e74c3c'); return; }
+        if (!email || !email.includes('@')) { showToast('⚠️ Please enter a valid email address.', '#e74c3c'); return; }
+        if (!area) { showToast('⚠️ Please select an area of interest.', '#e74c3c'); return; }
+        showToast(`✅ Thank you, ${first}! Your application has been received. We'll be in touch within 5 days.`);
+        // reset
+        ['volFirst','volLast','volEmail','volPhone','volBio'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('volLocation').selectedIndex = 0;
+        document.getElementById('volArea').selectedIndex = 0;
+        document.getElementById('volAvail').selectedIndex = 0;
+    }
+
+    // ── Back to top
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
 </html>
