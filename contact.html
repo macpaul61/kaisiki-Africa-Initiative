@@ -4,127 +4,617 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Kaisiki African Initiative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Copy all styles from homepage */
+        :root {
+            --orange:    #e67e22;
+            --orange-dk: #c0621a;
+            --dark:      #1a1a2e;
+            --cream:     #fdf6ec;
+            --warm:      #f5ead8;
+            --text:      #2d2d2d;
+            --muted:     #666;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--text); line-height: 1.7; overflow-x: hidden; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── HEADER ─────────────────────────────────────────── */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: rgba(15,15,30,0.55); backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.4s;
+        }
+        header.scrolled { background: rgba(26,26,46,0.97); }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #e67e22; }
-        .logo span { color: #d35400; font-size: 0.9rem; display: block; }
-        .nav-links a { margin-left: 2rem; text-decoration: none; color: #333; transition: color 0.3s; font-weight: 500; }
-        .nav-links a:hover, .nav-links a.active { color: #e67e22; }
-        .page-header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1600x400?text=Contact+Us'); background-size: cover; background-position: center; padding: 5rem 0; text-align: center; color: white; }
-        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .section-title { text-align: center; font-size: 2.2rem; color: #e67e22; margin-bottom: 3rem; position: relative; }
-        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 10px auto 0; }
-        .contact-page { padding: 5rem 0; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .contact-form button { background: #e67e22; color: white; border: none; padding: 12px 30px; cursor: pointer; border-radius: 50px; font-weight: 600; width: 100%; }
-        .office-card { background: #fef9f0; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; }
-        .office-card h3 { color: #e67e22; margin-bottom: 0.5rem; }
-        .map-section { margin-top: 3rem; background: #fef9f0; padding: 2rem; border-radius: 12px; text-align: center; }
-        footer { background: #2c3e50; color: white; padding: 3rem 0 1rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .footer-col h4 { margin-bottom: 1rem; color: #e67e22; }
-        .footer-col a { color: white; text-decoration: none; display: block; margin-bottom: 0.5rem; opacity: 0.8; }
-        .footer-col a:hover { opacity: 1; color: #e67e22; }
-        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
-        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } .nav-links a { margin-left: 1rem; font-size: 0.9rem; } }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--orange); line-height: 1.25; text-decoration: none; }
+        .logo span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 400; color: rgba(255,255,255,0.65); letter-spacing: 0.04em; }
+
+        .nav-links { display: flex; align-items: center; gap: 0.25rem; }
+        .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: color 0.25s, background 0.25s; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(230,126,34,0.2); }
+
+        .dropdown { position: relative; }
+        .dropdown-btn { background: transparent; border: none; color: rgba(255,255,255,0.82); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; padding: 6px 14px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: color 0.25s, background 0.25s; }
+        .dropdown-btn::after { content: "▾"; font-size: 11px; transition: transform 0.3s; }
+        .dropdown:hover .dropdown-btn, .dropdown-btn:focus { color: #fff; background: rgba(230,126,34,0.2); }
+        .dropdown:hover .dropdown-btn::after { transform: rotate(180deg); }
+        .dropdown-content { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: rgba(20,20,35,0.97); border: 1px solid rgba(255,255,255,0.1); min-width: 170px; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+        .dropdown-content a { display: block; padding: 11px 18px; color: rgba(255,255,255,0.82); font-size: 0.88rem; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.2s, color 0.2s; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: rgba(230,126,34,0.18); color: #fff; }
+         .dropdown-content {
+            display: none;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── PAGE HERO ──────────────────────────────────────── */
+        .page-hero {
+            background: linear-gradient(155deg, rgba(0,0,0,0.75), rgba(0,0,0,0.5)),
+                        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 160px 0 90px; text-align: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(230,126,34,0.22) 0%, transparent 65%); pointer-events: none; }
+        .page-hero-badge { display: inline-block; background: rgba(230,126,34,0.2); border: 1px solid rgba(230,126,34,0.5); color: #f5a040; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 16px; border-radius: 50px; margin-bottom: 1.2rem; animation: fadeUp 0.7s ease both; }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.15; margin-bottom: 1rem; animation: fadeUp 0.8s 0.1s ease both; }
+        .page-hero h1 em { font-style: normal; color: var(--orange); }
+        .page-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto; animation: fadeUp 0.8s 0.2s ease both; }
+        .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.45); animation: fadeUp 0.8s 0.3s ease both; }
+        .breadcrumb a { color: var(--orange); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { color: rgba(255,255,255,0.3); }
+
+        /* ── SHARED ─────────────────────────────────────────── */
+        section { padding: 90px 0; }
+        .section-title { font-family: 'Playfair Display', serif; text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
+        .section-subtitle { text-align: center; color: var(--muted); font-size: 1.05rem; max-width: 620px; margin: 0 auto 3.5rem; }
+        .accent-line { width: 52px; height: 4px; background: var(--orange); border-radius: 2px; margin: 10px auto 0; }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── QUICK CONTACT CHIPS ────────────────────────────── */
+        .quick-chips { background: var(--cream); padding: 50px 0; }
+        .chips-row { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .chip {
+            display: flex; align-items: center; gap: 0.7rem;
+            background: #fff; padding: 12px 22px; border-radius: 50px;
+            text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.9rem;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+            transition: transform 0.25s, box-shadow 0.25s, color 0.25s;
+        }
+        .chip:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.13); color: var(--orange); }
+        .chip-icon { font-size: 1.2rem; }
+
+        /* ── MAIN CONTACT ───────────────────────────────────── */
+        .contact-main { background: #fff; }
+
+        .contact-grid {
+            display: grid; grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem; align-items: start;
+        }
+
+        /* ─ Form ─ */
+        .contact-form-box {
+            background: var(--cream); border-radius: 22px;
+            padding: 2.8rem; box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+        }
+        .contact-form-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.3rem; }
+        .contact-form-box .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
+        .form-group { margin-bottom: 0.9rem; }
+        .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px solid #e8e0d0; border-radius: 10px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+            color: var(--text); background: #fff; outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--orange); box-shadow: 0 0 0 3px rgba(230,126,34,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 130px; }
+
+        /* character counter */
+        .char-counter { text-align: right; font-size: 0.75rem; color: #bbb; margin-top: 3px; }
+
+        .submit-btn {
+            width: 100%; background: var(--orange); color: #fff;
+            border: none; padding: 15px; border-radius: 50px;
+            font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; margin-top: 0.4rem;
+            transition: background 0.25s, transform 0.2s;
+        }
+        .submit-btn:hover { background: var(--orange-dk); transform: translateY(-2px); }
+        .recaptcha-note { font-size: 0.74rem; color: #bbb; text-align: center; margin-top: 0.7rem; }
+
+        /* ─ Info sidebar ─ */
+        .contact-info { display: flex; flex-direction: column; gap: 1.3rem; }
+
+        .info-block-title {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; margin-bottom: 0.3rem;
+        }
+        .info-block-title em { font-style: normal; color: var(--orange); }
+        .info-block-sub { color: var(--muted); font-size: 0.92rem; margin-bottom: 0.5rem; line-height: 1.7; }
+
+        .info-card {
+            background: var(--cream); border-radius: 14px;
+            padding: 1.3rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .info-card:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+
+        .ic-icon {
+            width: 44px; height: 44px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dk));
+            border-radius: 11px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.15rem;
+        }
+        .ic-body strong { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .ic-body span { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+        .ic-body a { color: var(--orange); text-decoration: none; font-weight: 500; }
+        .ic-body a:hover { text-decoration: underline; }
+
+        /* WhatsApp card */
+        .whatsapp-card {
+            background: linear-gradient(135deg, #075e54, #128c7e);
+            border-radius: 14px; padding: 1.4rem 1.6rem;
+            display: flex; gap: 1rem; align-items: center;
+            text-decoration: none; transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .whatsapp-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(7,94,84,0.35); }
+        .wa-icon { font-size: 2rem; flex-shrink: 0; }
+        .wa-body strong { display: block; color: #fff; font-size: 0.95rem; margin-bottom: 2px; }
+        .wa-body span { color: rgba(255,255,255,0.75); font-size: 0.85rem; }
+
+        /* hours */
+        .hours-card {
+            background: var(--cream); border-radius: 14px; padding: 1.3rem 1.5rem;
+        }
+        .hours-card h4 { font-family: 'Playfair Display', serif; margin-bottom: 0.8rem; font-size: 1rem; color: var(--text); }
+        .hours-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.88rem; }
+        .hours-row:last-child { border-bottom: none; }
+        .hours-row span:first-child { color: var(--muted); }
+        .hours-row span:last-child { font-weight: 600; color: var(--text); }
+
+        /* ── MAP SECTION ─────────────────────────────────────── */
+        .map-section { background: var(--warm); }
+
+        .map-inner {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 3rem; align-items: center;
+        }
+
+        .map-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .map-text h2 em { font-style: normal; color: var(--orange); }
+        .map-text p { color: var(--muted); font-size: 0.98rem; line-height: 1.8; margin-bottom: 1rem; }
+
+        .address-box {
+            background: #fff; border-radius: 14px; padding: 1.4rem 1.6rem;
+            border-left: 4px solid var(--orange);
+        }
+        .address-box p { font-size: 0.95rem; color: var(--text); line-height: 1.8; }
+        .address-box strong { color: var(--orange); }
+
+        .map-embed {
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+            height: 340px;
+        }
+        .map-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+        /* map fallback (shown when iframe unavailable) */
+        .map-fallback {
+            width: 100%; height: 340px;
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            border-radius: 20px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 0.8rem; color: #fff;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .map-fallback .mf-icon { font-size: 3.5rem; }
+        .map-fallback h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+        .map-fallback p { color: rgba(255,255,255,0.65); font-size: 0.88rem; text-align: center; max-width: 260px; }
+        .map-fallback a {
+            display: inline-block; margin-top: 0.5rem;
+            background: var(--orange); color: #fff; padding: 10px 24px;
+            border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+            transition: background 0.25s;
+        }
+        .map-fallback a:hover { background: var(--orange-dk); }
+
+        /* ── FAQ SECTION ─────────────────────────────────────── */
+        .faq-section { background: #fff; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; max-width: 900px; margin: 0 auto; }
+
+        .faq-item {
+            background: var(--cream); border-radius: 14px; padding: 0;
+            overflow: hidden; transition: box-shadow 0.25s;
+        }
+        .faq-item:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.09); }
+
+        .faq-q {
+            padding: 1.2rem 1.5rem; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            gap: 1rem; user-select: none;
+        }
+        .faq-q .faq-arrow { color: var(--orange); font-size: 0.8rem; transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+            padding: 0 1.5rem;
+        }
+        .faq-item.open .faq-a { max-height: 200px; padding: 0 1.5rem 1.2rem; }
+
+        /* ── CTA BAND ─────────────────────────────────────────── */
+        .cta-band {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 80px 0; text-align: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(230,126,34,0.18) 0%, transparent 60%); }
+        .cta-band h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; position: relative; }
+        .cta-band p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem; position: relative; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+        .btn { display: inline-block; background: var(--orange); color: #fff; padding: 13px 32px; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(230,126,34,0.4); }
+        .btn:hover { background: var(--orange-dk); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.6); color: #fff; box-shadow: none; }
+        .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
+        footer { background: var(--dark); color: rgba(255,255,255,0.75); padding: 60px 0 24px; }
+        .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 2.5rem; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .footer-col h4 { font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 1rem; font-size: 1.05rem; }
+        .footer-col p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--orange); }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--orange); margin-bottom: 0.6rem; }
+        .social-links { display: flex; gap: 0.6rem; margin-top: 1rem; }
+        .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,0.07); border-radius: 8px; font-size: 1rem; text-decoration: none; transition: background 0.2s; margin-bottom: 0; }
+        .social-links a:hover { background: var(--orange); }
+        .copyright { text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+
+        /* ── TOAST ───────────────────────────────────────────── */
+        .toast { position: fixed; bottom: 32px; right: 32px; background: #2ecc71; color: #fff; padding: 14px 22px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 6px 24px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0; transition: transform 0.4s, opacity 0.4s; z-index: 9999; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+
+        /* ── BACK TO TOP ─────────────────────────────────────── */
+        #backToTop { position: fixed; bottom: 32px; right: 32px; width: 46px; height: 46px; background: var(--orange); color: #fff; border: none; border-radius: 12px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(230,126,34,0.45); opacity: 0; transform: translateY(20px); transition: opacity 0.3s, transform 0.3s, background 0.2s; z-index: 900; }
+        #backToTop.visible { opacity: 1; transform: translateY(0); }
+        #backToTop:hover { background: var(--orange-dk); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+        /* ── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 960px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .map-inner { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            section { padding: 70px 0; }
+            .menu-toggle { display: flex; }
+            .nav-links { display: none; position: fixed; top: 0; right: 0; width: min(300px, 85vw); height: 100vh; background: rgba(15,15,30,0.98); backdrop-filter: blur(20px); flex-direction: column; align-items: flex-start; padding: 90px 28px 40px; gap: 0.25rem; box-shadow: -6px 0 40px rgba(0,0,0,0.4); transform: translateX(100%); transition: transform 0.35s ease; z-index: 999; }
+            .nav-links.active { display: flex; transform: translateX(0); }
+            .nav-links a { width: 100%; padding: 10px 14px; font-size: 1rem; }
+            .dropdown { width: 100%; }
+            .dropdown-btn { width: 100%; justify-content: space-between; padding: 10px 14px; font-size: 1rem; }
+            .dropdown-content { display: none; position: static; background: rgba(255,255,255,0.04); border-radius: 8px; box-shadow: none; border: none; margin-top: 4px; }
+            .dropdown-content.show { display: block; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
+
+    <!-- HEADER -->
+    <header id="siteHeader">
         <div class="container">
             <nav>
-                <div class="logo">
+                <a href="index.html" class="logo">
                     Kaisiki African Initiative
                     <span>Empowering Communities, Transforming Lives</span>
-                </div>
-                <div class="nav-links">
+                </a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="nav-links" id="navLinks">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
                     <a href="programs.html">Programs</a>
-                    <a href="impact.html">Impact</a>
-                    <a href="get-involved.html">Get Involved</a>
-                    <a href="contact.html" class="active">Contact</a>
+                    <div class="dropdown">
+                        <button class="dropdown-btn" id="dropdownBtn" aria-haspopup="true" aria-expanded="false">More</button>
+                        <div class="dropdown-content" id="dropdownMenu">
+                            <a href="impact.html">Impact</a>
+                            <a href="get-involved.html">Get Involved</a>
+                            <a href="contact.html" class="active">Contact</a>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section class="page-header">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
         <div class="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you. Reach out with questions, partnership inquiries, or just to say hello.</p>
+            <div class="page-hero-badge">💬 We'd Love to Hear From You</div>
+            <h1>Get in <em>Touch</em></h1>
+            <p>Questions, partnership ideas, volunteer enquiries, or just want to know more — our team in Dar es Salaam is ready to respond.</p>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span style="color:rgba(255,255,255,0.65)">Contact</span>
+            </nav>
         </div>
     </section>
 
-    <section class="contact-page">
+    <!-- QUICK CHIPS -->
+    <section class="quick-chips">
+        <div class="container">
+            <div class="chips-row reveal">
+                <a href="mailto:info@kaisikiafrica.org" class="chip"><span class="chip-icon">📧</span> info@kaisikiafrica.org</a>
+                <a href="tel:+255700000000" class="chip"><span class="chip-icon">📞</span> +255 700 000 000</a>
+                <a href="https://wa.me/255700000000" target="_blank" class="chip"><span class="chip-icon">💬</span> WhatsApp Us</a>
+                <a href="https://www.instagram.com/kaisiki_africa_initiative" target="_blank" class="chip"><span class="chip-icon">📷</span> Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTACT -->
+    <section class="contact-main">
         <div class="container">
             <div class="contact-grid">
-                <div class="contact-form">
-                    <h2 class="section-title" style="margin-bottom: 1rem;">Send a Message</h2>
-                    <form id="mainContactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject">
-                        <select>
-                            <option>Inquiry Type</option>
-                            <option>General Inquiry</option>
-                            <option>Partnership Opportunities</option>
-                            <option>Donation Support</option>
-                            <option>Volunteer Application</option>
-                            <option>Media & Press</option>
-                        </select>
-                        <textarea rows="6" placeholder="Your message"></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
-                    <p style="font-size: 0.8rem; margin-top: 1rem; text-align: center;">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
-                </div>
-                <div>
-                    <h2 class="section-title" style="margin-bottom: 1rem;">Our Offices</h2>
-                    <div class="office-card">
-                        <h3>📍 Nairobi, Kenya (Headquarters)</h3>
-                        <p>Westlands Road, Eden Square<br>Nairobi, Kenya</p>
-                        <p><strong>📞</strong> +254 700 123 456<br><strong>✉️</strong> info@kaisikiafrica.org</p>
-                    </div>
-                    <div class="office-card">
-                        <h3>📍 Accra, Ghana</h3>
-                        <p>Airport City, 4th Floor<br>Accra, Ghana</p>
-                        <p><strong>📞</strong> +233 302 123 456<br><strong>✉️</strong> ghana@kaisikiafrica.org</p>
-                    </div>
-                    <div class="office-card">
-                        <h3>📍 Lagos, Nigeria</h3>
-                        <p>Victoria Island, Adeola Odeku Street<br>Lagos, Nigeria</p>
-                        <p><strong>📞</strong> +234 701 234 5678<br><strong>✉️</strong> nigeria@kaisikiafrica.org</p>
-                    </div>
-                    <div class="office-card">
-                        <h3>📍 Kampala, Uganda</h3>
-                        <p>Kampala Road, Jubilee Building<br>Kampala, Uganda</p>
-                        <p><strong>📞</strong> +256 414 123 456<br><strong>✉️</strong> uganda@kaisikiafrica.org</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="map-section">
-                <h3 style="color: #e67e22; margin-bottom: 1rem;">Get in Touch</h3>
-                <p>For general inquiries: <strong>info@kaisikiafrica.org</strong></p>
-                <p>For partnerships: <strong>partners@kaisikiafrica.org</strong></p>
-                <p>For media inquiries: <strong>media@kaisikiafrica.org</strong></p>
-                <p style="margin-top: 1rem;"><strong>Mailing Address:</strong> PO Box 12345-00100, Nairobi, Kenya</p>
+                <!-- FORM -->
+                <div class="contact-form-box reveal">
+                    <h3>Send Us a Message</h3>
+                    <p class="sub">Fill in the form and we'll respond within 2 business days.</p>
+
+                    <form id="mainContactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" id="cfFirst" placeholder="Your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" id="cfLast" placeholder="Your last name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="cfEmail" placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone / WhatsApp (optional)</label>
+                            <input type="tel" id="cfPhone" placeholder="+255 7XX XXX XXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enquiry Type</label>
+                            <select id="cfType">
+                                <option value="">Select the nature of your message</option>
+                                <option>General Enquiry</option>
+                                <option>Donation & Giving</option>
+                                <option>Volunteer Application</option>
+                                <option>Partnership / Sponsorship</option>
+                                <option>Media & Press</option>
+                                <option>Program Information</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Your Message</label>
+                            <textarea id="cfMessage" rows="5" placeholder="Tell us what's on your mind…" maxlength="1000" oninput="updateCount(this)"></textarea>
+                            <div class="char-counter"><span id="charCount">0</span> / 1000</div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message →</button>
+                    </form>
+                    <p class="recaptcha-note">This site is protected by reCAPTCHA. Google <a href="#" style="color:var(--orange);">Privacy Policy</a> applies.</p>
+                </div>
+
+                <!-- INFO SIDEBAR -->
+                <div class="contact-info reveal">
+
+                    <div>
+                        <h2 class="info-block-title">Our <em>Office</em></h2>
+                        <p class="info-block-sub">We are based in Dar es Salaam, Tanzania. Our team is small, responsive, and genuinely happy to hear from you.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">📍</div>
+                        <div class="ic-body">
+                            <strong>Headquarters</strong>
+                            <span>Dar es Salaam, Tanzania<br>Exact address shared upon appointment</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">📧</div>
+                        <div class="ic-body">
+                            <strong>Email Us</strong>
+                            <span>
+                                General: <a href="mailto:info@kaisikiafrica.org">info@kaisikiafrica.org</a><br>
+                                Partnerships: <a href="mailto:partners@kaisikiafrica.org">partners@kaisikiafrica.org</a><br>
+                                Media: <a href="mailto:media@kaisikiafrica.org">media@kaisikiafrica.org</a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">📞</div>
+                        <div class="ic-body">
+                            <strong>Call Us</strong>
+                            <span>
+                                <a href="tel:+255700000000">+255 700 000 000</a><br>
+                                Available Mon–Fri, 8 AM – 5 PM EAT
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/255700000000?text=Hello%20Kaisiki%20team%2C%20I'd%20like%20to%20get%20in%20touch." target="_blank" class="whatsapp-card">
+                        <span class="wa-icon">💬</span>
+                        <div class="wa-body">
+                            <strong>Chat on WhatsApp</strong>
+                            <span>Fastest way to reach us — we reply within hours</span>
+                        </div>
+                    </a>
+
+                    <!-- Office hours -->
+                    <div class="hours-card">
+                        <h4>🕒 Office Hours (EAT)</h4>
+                        <div class="hours-row"><span>Monday – Friday</span><span>8:00 AM – 5:00 PM</span></div>
+                        <div class="hours-row"><span>Saturday</span><span>9:00 AM – 1:00 PM</span></div>
+                        <div class="hours-row"><span>Sunday & Public Holidays</span><span>Closed</span></div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- MAP -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-inner">
+                <div class="map-text reveal">
+                    <h2>Find Us in <em>Dar es Salaam</em></h2>
+                    <p>Our team is based in Tanzania's largest city and commercial capital. All in-person meetings are by appointment — please contact us first so we can arrange a suitable time.</p>
+                    <div class="address-box">
+                        <p>
+                            <strong>Kaisiki African Initiative</strong><br>
+                            Dar es Salaam, Tanzania<br><br>
+                            <strong>Email:</strong> info@kaisikiafrica.org<br>
+                            <strong>Phone:</strong> +255 700 000 000<br>
+                            <strong>WhatsApp:</strong> +255 700 000 000
+                        </p>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <!-- Embedded Google Map centered on Dar es Salaam -->
+                    <div class="map-embed">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253739.78288534!2d39.1522!3d-6.7924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4bae169bd6f1%3A0x940f6b26a086a1ef!2sDar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2s!4v1699000000000!5m2!1sen!2s"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            title="Kaisiki African Initiative — Dar es Salaam">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title reveal">Frequently Asked Questions</h2>
+            <div class="accent-line reveal"></div>
+            <p class="section-subtitle reveal">Can't find what you're looking for? Just send us a message above.</p>
+            <div class="faq-grid">
+
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        How do I donate to Kaisiki? <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-a">Visit our Get Involved page to donate via M-Pesa, bank transfer, or an international payment gateway. You can also email us directly and we'll guide you through the process.</div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        Where does my donation go? <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-a">100% of donations go to program delivery — school fees, supplies, mentorship, and community outreach in Tanzania. We publish annual financial reports for full transparency.</div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        Can I volunteer if I'm not in Tanzania? <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-a">Yes. We have remote volunteer roles in grant writing, communications, social media, web support, and translation. Apply via the Get Involved page.</div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        How can my organisation partner with you? <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-a">We welcome partnerships with schools, corporates, foundations, and NGOs. Contact us at partners@kaisikiafrica.org or use the form above — select "Partnership / Sponsorship" as the enquiry type.</div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        How quickly will you respond to my message? <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-a">We aim to respond to all messages within 2 business days. For urgent matters, WhatsApp is the fastest way to reach us.</div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        Is Kaisiki a registered NGO? <span class="faq-arrow">▾</span>
+                    </div>
+                    <div class="faq-a">Yes. Kaisiki African Initiative is a registered non-governmental organisation in Tanzania. Registration details are available on request for due diligence purposes.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+        <div class="container">
+            <h2 class="reveal">Ready to Make a Difference?</h2>
+            <p class="reveal">Whether you give, volunteer, or simply spread the word — every action brings a Tanzanian girl one step closer to her future.</p>
+            <div class="cta-buttons reveal">
+                <a href="get-involved.html" class="btn">Get Involved</a>
+                <a href="programs.html" class="btn btn-outline">Our Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Kaisiki African Initiative</h4>
-                    <p>Empowering communities across Africa through sustainable development programs.</p>
+                    <div class="footer-logo">Kaisiki African Initiative</div>
+                    <p>Empowering young female students in Tanzania, with a vision to grow across Africa.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/kaisiki_africa_initiative" target="_blank" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
@@ -136,31 +626,114 @@
                 </div>
                 <div class="footer-col">
                     <h4>Support Our Work</h4>
-                    <a href="#">Donate</a>
-                    <a href="#">Volunteer</a>
-                    <a href="#">Partner With Us</a>
+                    <a href="get-involved.html#donate">Donate</a>
+                    <a href="get-involved.html#volunteer">Volunteer</a>
+                    <a href="get-involved.html#partner">Partner With Us</a>
+                    <a href="get-involved.html#donate">Sponsor a Girl</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Annual Report</a>
                 </div>
             </div>
             <div class="copyright">
-                <p>Kaisiki African Initiative &copy; 2026 - All Rights Reserved</p>
-                <p style="margin-top: 0.5rem;">Registered NGO in Kenya: OP.218/051/2022-024/10529</p>
+                <p>© 2026 Kaisiki African Initiative. All Rights Reserved. &nbsp;|&nbsp; Based in Dar es Salaam, Tanzania &nbsp;|&nbsp; Built with ❤️ for Africa</p>
             </div>
         </div>
     </footer>
 
+    <button id="backToTop" aria-label="Back to top">↑</button>
+    <div class="toast" id="toast"></div>
+
     <script>
-        document.getElementById('mainContactForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for reaching out! Our team will respond within 2-3 business days.');
-            this.reset();
+    // Sticky header
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60));
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks   = document.getElementById('navLinks');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        menuToggle.classList.toggle('open', menuOpen);
+        navLinks.classList.toggle('active', menuOpen);
+        menuToggle.setAttribute('aria-expanded', menuOpen);
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+    document.addEventListener('click', (e) => {
+        if (menuOpen && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuOpen = false;
+            menuToggle.classList.remove('open');
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+    document.getElementById('dropdownBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = document.getElementById('dropdownMenu').classList.toggle('show');
+        document.getElementById('dropdownBtn').setAttribute('aria-expanded', open);
+    });
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+                const delay = siblings.indexOf(entry.target) * 80;
+                setTimeout(() => entry.target.classList.add('visible'), delay);
+                revealObs.unobserve(entry.target);
+            }
         });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Character counter
+    function updateCount(el) {
+        document.getElementById('charCount').textContent = el.value.length;
+    }
+
+    // Toast
+    function showToast(msg, color = '#2ecc71') {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.style.background = color;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 5000);
+    }
+
+    // Contact form
+    document.getElementById('mainContactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const first   = document.getElementById('cfFirst').value.trim();
+        const email   = document.getElementById('cfEmail').value.trim();
+        const message = document.getElementById('cfMessage').value.trim();
+
+        if (!first)                       { showToast('⚠️ Please enter your name.', '#e74c3c'); return; }
+        if (!email || !email.includes('@')){ showToast('⚠️ Please enter a valid email.', '#e74c3c'); return; }
+        if (!message)                     { showToast('⚠️ Please write your message.', '#e74c3c'); return; }
+
+        showToast(`✅ Thank you, ${first}! We'll be in touch within 2 business days.`);
+        this.reset();
+        document.getElementById('charCount').textContent = '0';
+    });
+
+    // FAQ accordion
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    }
+
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
 </html>
